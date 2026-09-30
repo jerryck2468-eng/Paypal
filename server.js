@@ -90,6 +90,10 @@ app.get("/api/demo-submissions", requireAdmin, (req, res) => {
   });
 });
 
+app.get("/admin", requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "admin.html"));
+});
+
 app.delete("/api/demo-submissions/:id", requireAdmin, (req, res) => {
   const id = Number(req.params.id);
 
