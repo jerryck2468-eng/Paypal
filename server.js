@@ -1,9 +1,35 @@
-const express = require("express");
-const path = require("path");
-
 const app = express();
-const PORT = process.env.PORT || 3000;
 
+const ADMIN_USER = process.env.ADMIN_USER;
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+
+function requireAdmin(req, res, next) {
+  const auth = req.headers.authorization || "";
+
+  if (!auth.startsWith("Basic ")) {
+    res.set("WWW-Authenticate", 'Basic realm="Demo Admin"');
+    return res.status(401).send("Admin login required.");
+  }
+
+  const decoded = Buffer.from(auth.slice(6), "base64").toString("utf8");
+  const separator = decoded.indexOf(":");
+
+  if (separator === -1) {
+    return res.status(401).send("Unauthorized.");
+  }
+
+  const username = decoded.slice(0, separator);
+  const password = decoded.slice(separator + 1);
+
+  if (username !== ADMIN_USER || password !== ADMIN_PASSWORD) {
+    res.set("WWW-Authenticate", 'Basic realm="Demo Admin"');
+    return res.status(401).send("Unauthorized.");
+  }
+
+  next();
+}
+
+const PORT = process.env.PORT || 3000;
 // Simple in-memory storage for this demo.
 // Data is cleared whenever the server restarts.
 const submissions = [];
@@ -54,7 +80,7 @@ app.post("/api/demo-submissions", (req, res) => {
   });
 });
 
-app.get("/api/demo-submissions", (req, res) => {
+app.get("/api/demo-submissions", requireAdmin, (req, res) => {
   res.json({
     count: submissions.length,
     submissions
