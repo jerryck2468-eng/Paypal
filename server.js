@@ -38,6 +38,11 @@ const PORT = process.env.PORT || 3000;
 const submissions = [];
 
 app.use(express.json({ limit: "20kb" }));
+
+app.get("/admin.html", requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "admin.html"));
+});
+
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/health", (req, res) => {
@@ -114,7 +119,11 @@ app.delete("/api/demo-submissions/:id", requireAdmin, (req, res) => {
 });
 
 app.get("*", (req, res, next) => {
-  if (req.path.startsWith("/api/") || req.path === "/health") {
+  if (
+    req.path.startsWith("/api/") ||
+    req.path === "/health" ||
+    req.path === "/admin.html"
+  ) {
     return next();
   }
   res.sendFile(path.join(__dirname, "public", "index.html"));
