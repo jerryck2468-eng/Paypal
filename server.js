@@ -90,6 +90,25 @@ app.get("/api/demo-submissions", requireAdmin, (req, res) => {
   });
 });
 
+app.delete("/api/demo-submissions/:id", requireAdmin, (req, res) => {
+  const id = Number(req.params.id);
+
+  const index = submissions.findIndex((submission) => submission.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({
+      error: "Submission not found."
+    });
+  }
+
+  const deleted = submissions.splice(index, 1)[0];
+
+  res.json({
+    success: true,
+    deleted
+  });
+});
+
 app.get("*", (req, res, next) => {
   if (req.path.startsWith("/api/") || req.path === "/health") {
     return next();
